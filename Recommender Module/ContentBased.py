@@ -11,8 +11,8 @@ Original file is located at
 
 import pandas as pd
  
-courses = pd.read_csv("/Courses.csv")
-users = pd.read_csv("/Users.csv")
+courses = pd.read_csv("/content/Courses.csv")
+users = pd.read_csv("/content/Users.csv")
 
 uid =  1#@param {type:"integer"}
 print(uid)
@@ -27,9 +27,6 @@ courses.head(8)
 
 """
 
-courses.drop(columns="Unnamed: 3",inplace=True)
-courses
-
 courses.dropna(inplace=True)
 courses
 
@@ -43,6 +40,9 @@ courseCategories = courses['category'].str.split("|").values.tolist()
 courseCategories[0]
 
 """# Output """
+
+print("Username: "+ users['name'][users.userId==uid][uid-1])
+print("Preferred Topics: "+ users['field_of_interest'][users.userId==uid][uid-1])
 
 for i in range(len(courseCategories)):
   match = list(set(userTopics).intersection(set(courseCategories[i])))
