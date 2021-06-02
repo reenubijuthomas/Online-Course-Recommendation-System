@@ -78,13 +78,13 @@ content_probs_sorted
 """
 
 u1_likes=[]
-  u1_dislikes=[]
-  other_likes={}
-  other_dislikes={}
+u1_dislikes=[]
+other_likes={}
+other_dislikes={}
 
   #Traverse ratings table to get likes and dislikes of each user 
   
-  for index, rows in rating.iterrows():
+for index, rows in ratings.iterrows():
     if (rows.userId == uid):
       if (rows.rating == 1):
         u1_likes.append(rows.courseId.tolist())
@@ -100,66 +100,60 @@ u1_likes=[]
         other_likes[rows.userId].append(rows.courseId.tolist())
       elif (rows.rating == -1):
         other_dislikes[rows.userId].append(rows.courseId.tolist())
-  
-  print("User liked: " + str(u1_likes))
-  print("User disliked: " + str(u1_dislikes))
-  print("Other users likes: " + str(other_likes))
-  print("Other users dislikes: " + str(other_dislikes))
 
-"""###Similarity with other users"""
+print("User liked: " + str(u1_likes))
+print("User disliked: " + str(u1_dislikes))
+print("Other users likes: " + str(other_likes))
+print("Other users dislikes: " + str(other_dislikes))
+
+"###Similarity with other users"""
 
 common_likes=[]
-  common_dislikes=[]
-  opposite_rating1=[]
-  opposite_rating2=[]
-  similarity={}
-
-  # Traverse Users table to find similarity with each user
-
-  for index,rows in users.iterrows():
-    #if the user is not in ratings table:
-    if rows.userId not in other_likes.keys():
-      other_likes[rows.userId]=[]
-    if rows.userId not in other_dislikes.keys():
-      other_dislikes[rows.userId]=[]
-    if (rows.userId == uid):
-      continue
+common_dislikes=[]
+opposite_rating1=[]
+opposite_rating2=[]
+similarity={}
+# Traverse Users table to find similarity with each user
+for index,rows in users.iterrows():
+  #if the user is not in ratings table:
+  if rows.userId not in other_likes.keys():
+    other_likes[rows.userId]=[]
+  if rows.userId not in other_dislikes.keys():
+    other_dislikes[rows.userId]=[]
+  if (rows.userId == uid):
+    continue
+  else:
+    common_likes=list(set(u1_likes).intersection(set(other_likes[rows.userId])))
+    common_dislikes=list(set(u1_dislikes).intersection(set(other_dislikes[rows.userId])))
+    opposite_rating1=list(set(u1_likes).intersection(set(other_dislikes[rows.userId])))
+    opposite_rating2=list(set(u1_dislikes).intersection(set(other_likes[rows.userId])))
+    lst=[u1_likes,u1_dislikes,other_likes[rows.userId],other_dislikes[rows.userId]]
+    total=list(set().union(*lst))
+    if len(total)!=0:
+      similarity[rows.userId]=(len(common_likes)+len(common_dislikes)-len(opposite_rating1)-len(opposite_rating2))/len(total)
     else:
-      common_likes=list(set(u1_likes).intersection(set(other_likes[rows.userId])))
-      common_dislikes=list(set(u1_dislikes).intersection(set(other_dislikes[rows.userId])))
-      opposite_rating1=list(set(u1_likes).intersection(set(other_dislikes[rows.userId])))
-      opposite_rating2=list(set(u1_dislikes).intersection(set(other_likes[rows.userId])))
-      lst=[u1_likes,u1_dislikes,other_likes[rows.userId],other_dislikes[rows.userId]]
-      total=list(set().union(*lst))
-
-      if len(total)!=0:
-        similarity[rows.userId]=(len(common_likes)+len(common_dislikes)-len(opposite_rating1)-len(opposite_rating2))/len(total)
-      else:
-        similarity[rows.userId]=0
-  print()
-  print("Similarity with other users : ",similarity)
-  print()
+      similarity[rows.userId]=0
+print()
+print("Similarity with other users : ",similarity)
+print()
 
 """###Rated users of each course"""
 
 course_likes={}
-  course_dislikes={}
+course_dislikes={}
+#Traverse Ratings table to get liked and disliked users of each course
 
-  #Traverse Ratings table to get liked and disliked users of each course
+for index, rows in ratings.iterrows():
   
-  for index, rows in rating.iterrows():
-    
-    if rows.courseId not in course_likes.keys():
-      course_likes[rows.courseId]=[]
-    if rows.courseId not in course_dislikes.keys():
-      course_dislikes[rows.courseId]=[]
-
-    if (rows.rating == 1):
-      course_likes[rows.courseId].append(rows.userId.tolist())
-    if (rows.rating == -1):
-      course_dislikes[rows.courseId].append(rows.userId.tolist())
-
-  print(" Course Likes : ",course_likes,'\n',"Course Dislikes : ",course_dislikes)
+  if rows.courseId not in course_likes.keys():
+    course_likes[rows.courseId]=[]
+  if rows.courseId not in course_dislikes.keys():
+    course_dislikes[rows.courseId]=[]
+  if (rows.rating == 1):
+    course_likes[rows.courseId].append(rows.userId.tolist())
+  if (rows.rating == -1):
+    course_dislikes[rows.courseId].append(rows.userId.tolist())
+print(" Course Likes : ",course_likes,'\n',"Course Dislikes : ",course_dislikes)
 
 """###Find Probabilities"""
 
@@ -167,7 +161,7 @@ collab_probs={}
 
 #Traverse Courses table to get similarity of liked and disliked users
 
-  for index,rows in courses.iterrows():
+for index,rows in courses.iterrows():
     if rows.courseId not in course_likes.keys():
       course_likes[rows.courseId]=[]
     if rows.courseId not in course_dislikes.keys():
@@ -197,9 +191,9 @@ collab_probs={}
 
 print()
 print("Probability list:")
-print(probability_list)
+print(collab_probs)
 print()
-sorted_probability=sorted(probability_list,key=probability_list.get,reverse=True)
+sorted_probability=sorted(collab_probs,key=collab_probs.get,reverse=True)
 print("Sorted probability:")
 print(sorted_probability)
 print()
@@ -208,7 +202,7 @@ print()
 
 #Determining the recommendations by taking into account those probabilities which are Non-zero
 collab_probs_nonzero={}
-for i,j in probability_list.items():
+for i,j in collab_probs.items():
   if j!=float(0):
     collab_probs_nonzero[i]=j
 
