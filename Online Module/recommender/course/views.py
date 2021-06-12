@@ -37,7 +37,8 @@ def rate(request, pk):
 
     if result == "0":
         result = "Enter Valid data"
-        return render(request, "debug.html", {"result": result})
+        url = "/course/"+str(pk)
+        return render(request, "debug.html", {"result": result, "url": url})
 
     else:
         if Rating.objects.filter(user=request.user, course=Course.objects.get(pk=pk)).exists():

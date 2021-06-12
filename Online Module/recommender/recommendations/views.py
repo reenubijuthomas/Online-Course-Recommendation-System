@@ -57,7 +57,7 @@ def recommendation(request):
     if UserProfiles.objects.filter(user=request.user).exists():
         user_profile = UserProfiles.objects.get(user=request.user)
     else:
-        return render(request, "debug.html", {"result": "Complete user profile to get recommendations"})
+        return render(request, "debug.html", {"result": "Complete user profile to get recommendations", "url": "/profile"})
 
     topics_str = user_profile.topics
     user_topics = [x.strip() for x in topics_str.split(',')]
