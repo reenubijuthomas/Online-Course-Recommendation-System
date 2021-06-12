@@ -3,26 +3,28 @@
 {% block content %}
 
 
-<h1>{{course.name}}</h1>
+<h2><b>{{course.name}}</b></h2>
 <br>
 {% if user.is_authenticated %}
-<h2>Current rating: {{rating}}</h2>
+<h3><b>Current rating:</b> &nbsp {{rating}}</h3>
 <br>
 
+<div class="container">
 <form action="rate/" method="post">
     {% csrf_token %}
 
-    <label for="rating"> Rate Course:</label>
-    <select name="rating" id="rating">
+    <label for="rating" class="rate23"><b>Rate Course:</b></label>
+    <select name="rating" id="rating" class="ratebox">
         <option value="0"> </option>
         <option value="1">Like</option>
         <option value="-1">Dislike</option>
     </select>
     <br>
-    <input type="submit">
-    <br>
+    <input type="submit" class=" ratesubmit">
+   
 
 </form>
+</div>
 {% else %}
     <a href="/accounts/login">Login to rate course</a>
 

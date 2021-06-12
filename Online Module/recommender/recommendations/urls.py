@@ -16,7 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from main.views import profile
 
 urlpatterns = [
-    path('', views.recommendation, name="recommendation")
+    path('', views.recommendation, name="recommendation"),
+    path('profile',profile, name="profile"),
 ]
