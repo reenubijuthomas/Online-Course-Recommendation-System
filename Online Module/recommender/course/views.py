@@ -33,8 +33,17 @@ def coursepage(request, pk):
 
 
 def rate(request, pk):
+<<<<<<< HEAD
     if request.method=="POST":
         result = request.POST["rating"]
+=======
+    result = request.POST["rating"]
+
+    if result == "0":
+        result = "Enter Valid data"
+        url = "/course/"+str(pk)
+        return render(request, "debug.html", {"result": result, "url": url})
+>>>>>>> b8c2e40b58be8643a547ddfa9c20e1f43ebf6805
 
         if result == "0":
             messages.info(request, "Invalid Rating")
