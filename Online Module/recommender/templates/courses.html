@@ -4,13 +4,13 @@
 
 {% if user.is_authenticated %}
 
-<h2><b>Hello, {{user.first_name}} !!!</b></h2>
+<h1>Hello, {{user.first_name}}!!!</h1>
 <br>
 
 
 {% else %}
 
-<h2><b>Hello {{name}} !!!</b></h2>
+<h1>Hello {{name}}!!!</h1>
 <br>
 
 {% endif %}
