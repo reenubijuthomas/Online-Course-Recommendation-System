@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<h2><b>Hello, {{user.first_name}} !!!</b></h2>
+<br>
+<h2><b>Favourite Topics:</b> &nbsp; {{topics}} </h2>
+
+<br>
+<form action="profile" method="post">
+    {% csrf_token %}
+
+    <div class="container">
+    <input type="text" name="topics"class="interest form-control" placeholder="Interested Topics"><br>
+    <br>
+    <input type="submit" class=" btn22 btn-light">
+    <br>
+    </div>
+
+</form>
+
+
+
+{% endblock %}

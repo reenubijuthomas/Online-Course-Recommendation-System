@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2><b>Hello, {{user.first_name}} !!! These are your recommendations..Enjoy :-)</b></h2>
+<br>
+<br>
+<h3>Courses best suited for you:</h3>
+{% for course in hybrid %}
+<li>
+    <a href="/course/{{course.id}}">{{course.name}}</a>
+</li>
+
+{% endfor %}
+<br>
+<h3>Courses based on your favourite topics:</h3>
+{% for course in content %}
+<li>
+    <a href="/course/{{course.id}}">{{course.name}}</a>
+</li>
+
+{% endfor %}
+<br>
+<h3>Courses liked by similar users:</h3>
+{% for course in collab %}
+<li>
+    <a href="/course/{{course.id}}">{{course.name}}</a>
+</li>
+
+{% endfor %}
+
+{% else %}
+
+<h2><b>Hello {{name}}, login to get recommendations</b></h2>
+<br>
+
+{% endif %}
+
+
+
+{% endblock %}

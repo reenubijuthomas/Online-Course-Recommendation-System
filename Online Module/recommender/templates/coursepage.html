@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+<h2><b>{{course.name}}</b></h2>
+<br>
+{% if user.is_authenticated %}
+<h3><b>Current rating:</b> &nbsp {{rating}}</h3>
+<br>
+
+<div class="container">
+<form action="rate/" method="post">
+    {% csrf_token %}
+
+    <label for="rating" class="rate23"><b>Rate Course:</b></label>
+    <select name="rating" id="rating" class="ratebox">
+        <option value="0"> </option>
+        <option value="1">Like</option>
+        <option value="-1">Dislike</option>
+    </select>
+    <br>
+    <input type="submit" class=" ratesubmit">
+   
+
+</form>
+</div>
+{% else %}
+    <a href="/accounts/login">Login to rate course</a>
+
+
+{% endif %}
+
+{% endblock %}

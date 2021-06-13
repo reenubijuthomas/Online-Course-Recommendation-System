@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h2><b>Hello, {{user.first_name}} !!!</b></h2>
+<br>
+
+
+{% else %}
+
+<h2><b>Hello {{name}} !!!</b></h2>
+<br>
+
+{% endif %}
+
+{% for course in courselist %}
+<li>
+    <a href="{{course.id}}">{{course.name}}</a>
+</li>
+<br>
+{% endfor %}
+
+{% endblock %}
