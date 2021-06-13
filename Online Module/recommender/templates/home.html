@@ -4,36 +4,23 @@
 
 {% if user.is_authenticated %}
 
-<h1>Hello, {{user.first_name}} {{user.last_name}} !</h1>
-<br>
-<li>
-    <a href="accounts/logout">Logout</a>
-</li>
-<br>
-<li>
-    <a href="profile">Profile</a>
-</li>
-<br>
-<li>
-    <a href="recommendations">Get Recommendations</a>
-</li>
+<h2><b>Hello, {{user.first_name}} {{user.last_name}} ! Welcome to your profile :-)</b></h2>
+
+<p><a class="btn btn-light" href="profile"  role="button"><h8>Profile</h8></a></p>
+<p><a class="btn btn-light" href="recommendations" role="button"><h8>View Recommendations</h8></a></p>
+<p><a class="btn btn-light" href="accounts/logout" role="button"><h8>Logout</h8></a></p>
 
 {% else %}
 
-<h1>Hello, {{name}}!!!</h1>
-<br>
-<li>
-    <a href="accounts/login">Login</a>
-</li>
-<br>
-<li>
-    <a href="accounts/register">Signup</a>
-</li>
+<h2><b>Hello, {{name}} !</b></h2>
+<p><a class="btn btn-light" href="accounts/login" role="button"><h8>Login</h8></a></p>
+
+<p><a class="btn btn-light" href="accounts/register" role="button"><h8>Signup</h8></a></p>
+
 
 {% endif %}
-<br>
-<li>
-    <a href="course">View Courses</a>
-</li>
+<p>
+    <a class="btn btn-light" href="course" role="button"><h8>View Courses</h8></a></p>
+
 
 {% endblock %}
