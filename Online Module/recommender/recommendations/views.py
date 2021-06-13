@@ -54,21 +54,12 @@ def recommendation(request):
     courses_hybrid_final = []
 
     ###CONTENT BASED###
-<<<<<<< HEAD
     try:
         user_profile = UserProfiles.objects.get(user=request.user)
     except UserProfiles.DoesNotExist:
         ##return render(request,"debug.html",{"result":"Complete your Profile to get recommendations"})
         return render(request,"msg.html")
     
-=======
-
-    if UserProfiles.objects.filter(user=request.user).exists():
-        user_profile = UserProfiles.objects.get(user=request.user)
-    else:
-        return render(request, "debug.html", {"result": "Complete user profile to get recommendations", "url": "/profile"})
-
->>>>>>> b8c2e40b58be8643a547ddfa9c20e1f43ebf6805
     topics_str = user_profile.topics
     user_topics = [x.strip() for x in topics_str.split(',')]
 

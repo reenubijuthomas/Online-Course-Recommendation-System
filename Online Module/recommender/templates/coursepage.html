@@ -25,6 +25,9 @@
 
 </form>
 </div>
+{% for message in messages %}
+       <h3>{{message}}</h3>
+{% endfor %}
 {% else %}
     <a href="/accounts/login">Login to rate course</a>
 
