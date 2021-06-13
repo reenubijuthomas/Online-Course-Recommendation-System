@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from course.models import Course, Rating
 from main.models import UserProfiles
 from django.contrib.auth.models import User, auth
-from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -54,12 +53,8 @@ def recommendation(request):
     courses_hybrid_final = []
 
     ###CONTENT BASED###
-    try:
-        user_profile = UserProfiles.objects.get(user=request.user)
-    except UserProfiles.DoesNotExist:
-        ##return render(request,"debug.html",{"result":"Complete your Profile to get recommendations"})
-        return render(request,"msg.html")
-    
+
+    user_profile = UserProfiles.objects.get(user=request.user)
     topics_str = user_profile.topics
     user_topics = [x.strip() for x in topics_str.split(',')]
 

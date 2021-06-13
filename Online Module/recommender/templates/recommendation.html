@@ -4,36 +4,36 @@
 
 {% if user.is_authenticated %}
 
-<h2><b>Hello, {{user.first_name}} !!! These are your recommendations..Enjoy :-)</b></h2>
+<h1>Hello, {{user.first_name}}!!!</h1>
 <br>
 <br>
-<h3>Courses best suited for you:</h3>
+<h2>Courses best suited for you:</h2>
 {% for course in hybrid %}
 <li>
     <a href="/course/{{course.id}}">{{course.name}}</a>
 </li>
-
+<br>
 {% endfor %}
 <br>
-<h3>Courses based on your favourite topics:</h3>
+<h2>Courses based on your favourite topics:</h2>
 {% for course in content %}
 <li>
     <a href="/course/{{course.id}}">{{course.name}}</a>
 </li>
-
+<br>
 {% endfor %}
 <br>
-<h3>Courses liked by similar users:</h3>
+<h2>Courses liked by similar users:</h2>
 {% for course in collab %}
 <li>
     <a href="/course/{{course.id}}">{{course.name}}</a>
 </li>
-
+<br>
 {% endfor %}
 
 {% else %}
 
-<h2><b>Hello {{name}}, login to get recommendations</b></h2>
+<h1>Hello {{name}}, login to get recommendations</h1>
 <br>
 
 {% endif %}

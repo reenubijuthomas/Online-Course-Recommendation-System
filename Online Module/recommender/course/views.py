@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Course, Rating
 from django.contrib.auth.models import User, auth
-from django.contrib import messages
+
 
 
 # Create your views here.
@@ -33,23 +33,22 @@ def coursepage(request, pk):
 
 
 def rate(request, pk):
-    if request.method=="POST":
-        result = request.POST["rating"]
+    result = request.POST["rating"]
 
-        if result == "0":
-            messages.info(request, "Invalid Rating")
-            return redirect("/course/"+str(pk)+"/rate")
+    if result == "0":
+        result = "Enter Valid data"
+        return render(request, "debug.html", {"result": result})
 
-        else:
-            if Rating.objects.filter(user=request.user, course=Course.objects.get(pk=pk)).exists():
-                Rating.objects.filter(user=request.user, course=Course.objects.get(pk=pk)).delete()
-
-            rating = Rating()
-            rating.user = request.user
-            rating.course = Course.objects.get(pk=pk)
-            rating.rating = result
-            rating.save()
-
-        return redirect('/course/')
     else:
-        return redirect('/course/'+str(pk))
+        if Rating.objects.filter(user=request.user, course=Course.objects.get(pk=pk)).exists():
+            Rating.objects.filter(user=request.user, course=Course.objects.get(pk=pk)).delete()
+
+        rating = Rating()
+        rating.user = request.user
+        rating.course = Course.objects.get(pk=pk)
+        rating.rating = result
+        rating.save()
+
+    return redirect('/course/')
+
+#    return redirect('/course/'+str(pk))
