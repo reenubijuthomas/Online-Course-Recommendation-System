@@ -3,10 +3,10 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h2><b>Hello {{user.first_name}} {{user.last_name}}, Please complete your profile!</b></h2>
+<h2 id="msg1"><b>Hello {{user.first_name}} {{user.last_name}}, please complete your profile!</b></h2>
 <br>
-<h3><b>We will suggest you courses based on your interests...</b></h3>
-<p><a class="btn btn-light" href="profile"  role="button"><h8>Profile</h8></a></p>
+<h3 id="msg2"><b>We will suggest you courses based on your interests...</b></h3>
+<p><a id="profile" class="btn btn-light" href="profile"  role="button"><h8>Profile</h8></a></p>
 
 
 {% endif %}

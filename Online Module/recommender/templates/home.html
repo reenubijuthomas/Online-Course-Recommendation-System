@@ -1,26 +1,32 @@
+
+
 {% extends 'base.html'%}
 
+
 {% block content %}
-
+{% load static %}
+{% static "images" as baseUrl %}
 {% if user.is_authenticated %}
+<br>
+<br>
+<h2 id="welcome_msg"><b>Hello!</b> Good to see you here.</h2>
 
-<h2><b>Hello, {{user.first_name}} {{user.last_name}} ! Welcome to your profile :-)</b></h2>
-
-<p><a class="btn btn-light" href="profile"  role="button"><h8>Profile</h8></a></p>
-<p><a class="btn btn-light" href="recommendations" role="button"><h8>View Recommendations</h8></a></p>
-<p><a class="btn btn-light" href="accounts/logout" role="button"><h8>Logout</h8></a></p>
+<p><a id="profile" class="btn btn-light" href="profile"  role="button"><h8>Profile</h8></a></p>
+<p><a id="recommendations" class="btn btn-light" href="recommendations" role="button"><h8>View Recommendations</h8></a></p>
+<img src="https://lovepik.com/images/png-books.html" alt="">
+<img src="{% static 'images/image5.png' %}" alt="">
 
 {% else %}
 
-<h2><b>Hello, {{name}} !</b></h2>
-<p><a class="btn btn-light" href="accounts/login" role="button"><h8>Login</h8></a></p>
+<h2 id="hello_msg"><b>Hello!</b></h2>
+<p><a id="login" class="btn btn-light" href="accounts/login" role="button"><h8>Login</h8></a></p>
 
-<p><a class="btn btn-light" href="accounts/register" role="button"><h8>Signup</h8></a></p>
+<p><a id="signup" class="btn btn-light" href="accounts/register" role="button"><h8>Signup</h8></a></p>
 
 
 {% endif %}
 <p>
-    <a class="btn btn-light" href="course" role="button"><h8>View Courses</h8></a></p>
+    <a id="courses" class="btn btn-light" href="course" role="button"><h8>View Courses</h8></a></p>
 
 
 {% endblock %}

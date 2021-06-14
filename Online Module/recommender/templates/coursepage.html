@@ -3,10 +3,10 @@
 {% block content %}
 
 
-<h2><b>{{course.name}}</b></h2>
+<h2 id="cname"><b>{{course.name}}</b></h2>
 <br>
 {% if user.is_authenticated %}
-<h3><b>Current rating:</b> &nbsp {{rating}}</h3>
+<h3 id="rating"><b>Current rating:</b> {{rating}}</h3>
 <br>
 
 <div class="container">
@@ -20,7 +20,7 @@
         <option value="-1">Dislike</option>
     </select>
     <br>
-    <input type="submit" class=" ratesubmit">
+    <input type="submit" id="rate_submit" class=" ratesubmit">
    
 
 </form>
@@ -29,12 +29,12 @@
 <div>
 
     {% for message in messages %}
-    <h3>{{message}}</h3>
+    <h9 id="invalid_msg"><b>{{message}}</b></h9>
     {% endfor %}
 
 </div>
 {% else %}
-    <a href="/accounts/login">Login to rate course</a>
+    <a id="login" href="/accounts/login">Login to rate course</a>
 
 
 {% endif %}

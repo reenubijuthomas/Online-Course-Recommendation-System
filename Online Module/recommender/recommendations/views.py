@@ -60,17 +60,19 @@ def recommendation(request):
         user_profile = UserProfiles.objects.get(user=request.user)
     except UserProfiles.DoesNotExist:
         ##return render(request,"debug.html",{"result":"Complete your Profile to get recommendations"})
-        return render(request,"msg.html")
+        return render(request, "msg.html")
     
     topics_str = user_profile.topics
     user_topics = [x.strip() for x in topics_str.split(',')]
+    user_topics_i = [x.lower() for x in user_topics]
 
     courses = Course.objects.all()
 
     for course in courses:
         course_topic_str = course.topics
         course_topic = [x.strip() for x in course_topic_str.split(',')]
-        common_topics = list(set(user_topics).intersection(set(course_topic)))
+        course_topic_i = [x.lower() for x in course_topic]
+        common_topics = list(set(user_topics_i).intersection(set(course_topic_i)))
         content_probs[course.pk] = len(common_topics) / len(course_topic)
 
     for i, j in content_probs.items():

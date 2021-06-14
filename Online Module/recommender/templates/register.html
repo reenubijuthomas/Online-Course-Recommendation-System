@@ -13,7 +13,7 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background-image: linear-gradient(to right ,#6484FD, #c555f1) !important;
 		}
 		.user_card {
 			width: 350px;
@@ -122,7 +122,7 @@
 						</div>
 
 				   		<div class="d-flex justify-content-center mt-3 login_container">
-				 			<input class="btn login_btn" type="submit" value="Register Account">
+				 			<input id="register_button" class="btn login_btn" type="submit" value="Register Account">
 				   		</div>
 
 					</form>
@@ -132,7 +132,7 @@
 
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+						Already have an account? <a id="login" href="{% url 'login' %}" class="ml-2">Login</a>
 					</div>
 				</div>
 			</div>

@@ -20,5 +20,4 @@ from main.views import profile
 
 urlpatterns = [
     path('', views.recommendation, name="recommendation"),
-    path('profile',profile, name="profile"),
 ]
