@@ -21,6 +21,15 @@
     </select>
     <br>
     <input type="submit" id="rate_submit" class=" ratesubmit">
+    <br>
+    <br>
+    <br>
+    <br>
+        {% for chapter in chapters %}
+        <li>
+            <a id="chapter_list" href="/course/{{course.id}}/chapter/{{chapter.id}}">{{chapter.name}}</a>
+        </li>
+        {% endfor %}
    
 
 </form>
@@ -33,6 +42,7 @@
     {% endfor %}
 
 </div>
+
 {% else %}
     <a id="login" href="/accounts/login">Login to rate course</a>
 

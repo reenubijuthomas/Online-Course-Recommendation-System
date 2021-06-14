@@ -20,5 +20,6 @@ from . import views
 urlpatterns = [
     path('', views.courses, name="courses"),
     path("<int:pk>/", views.coursepage, name="coursepage"),
-    path('<int:pk>/rate/', views.rate, name="rate")
+    path('<int:pk>/rate/', views.rate, name="rate"),
+    path('<int:pk>/chapter/<int:cpk>', views.chapter, name="chapter")
 ]
