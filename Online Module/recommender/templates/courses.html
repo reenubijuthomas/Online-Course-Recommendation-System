@@ -1,11 +1,11 @@
 {% extends 'base.html'%}
 
 {% block content %}
-<h2 id="courses"><b>Available Courses</b></h2>
+<h3 id="courses"><b>Available Courses</b></h3>
 <br>
 
 {% for course in courselist %}
-<li class="courses">
+<li class="courses2">
     <a id="course_list" href="{{course.id}}">{{course.name}}</a>
 </li>
 <br>

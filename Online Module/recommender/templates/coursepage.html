@@ -3,17 +3,17 @@
 {% block content %}
 
 
-<h2 id="cname"><b>{{course.name}}</b></h2>
+<h1 id="cname"><b>{{course.name}}</b></h1>
 <br>
 {% if user.is_authenticated %}
-<h3 id="rating"><b>Current rating:</b> {{rating}}</h3>
+<h3 id="rating"><b>Current rating:</b> &nbsp {{rating}}</h3>
 <br>
 
 <div class="container">
 <form action="rate/" method="post">
     {% csrf_token %}
 
-    <label for="rating" class="rate23"><b>Rate Course:</b></label>
+    <label for="rating" class="rate23"><h7>Rate Course:</h7></label>
     <select name="rating" id="rating" class="ratebox">
         <option value="0"> </option>
         <option value="1">Like</option>
@@ -22,6 +22,13 @@
     <br>
     <input type="submit" id="rate_submit" class=" ratesubmit">
     <br>
+    <div>
+
+    {% for message in messages %}
+    <h9 id="invalid_msg"><b>{{message}}</b></h9>
+    {% endfor %}
+
+    </div>
     <br>
     <br>
     <br>
@@ -35,16 +42,9 @@
 </form>
 </div>
 
-<div>
-
-    {% for message in messages %}
-    <h9 id="invalid_msg"><b>{{message}}</b></h9>
-    {% endfor %}
-
-</div>
 
 {% else %}
-    <a id="login" href="/accounts/login">Login to rate course</a>
+    <a id="login" href="/accounts/login">Login to view/rate course</a>
 
 
 {% endif %}
