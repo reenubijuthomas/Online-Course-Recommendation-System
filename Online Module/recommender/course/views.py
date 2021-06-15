@@ -51,7 +51,7 @@ def rate(request, pk):
             rating.rating = result
             rating.save()
 
-        return redirect('/course/')
+        return redirect('/course/'+str(pk))
     else:
         return redirect('/course/' + str(pk))
 
@@ -60,4 +60,4 @@ def chapter(request, pk, cpk):
     course_obj = Course.objects.get(pk=pk)
     chapter_obj = Chapter.objects.get(pk=cpk)
 
-    return render(request, "chapter.html", {"chapter": chapter_obj})
+    return render(request, "chapter.html", {"chapter": chapter_obj, "course": course_obj})
