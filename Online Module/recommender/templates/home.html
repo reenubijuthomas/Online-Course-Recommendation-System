@@ -6,16 +6,17 @@
 {% block content %}
 {% load static %}
 {% static "images" as baseUrl %}
-{% if user.is_authenticated %}
-<br>
-<br>
-
 <style>
     .wrapper{position:relative;}
     .right,.left{width:50%; position:absolute;}
     .right{right:0;}
     .left{left:0;}
 </style>
+{% if user.is_authenticated %}
+<br>
+<br>
+
+
 
 <div class="wrapper">
             <h2 id="welcome_msg"><b>Hello!</b> Good to see you here.</h2>
@@ -26,24 +27,26 @@
     <div class="right">
         <p><a id="profile" class="btn btn-light" href="profile"  role="button"><h8>Profile</h8></a></p>
         <p><a id="recommendations" class="btn btn-light" href="recommendations" role="button"><h8>View Recommendations</h8></a></p>
+        <p><a id="courses" class="btn btn-light" href="course" role="button"><h8>View Courses</h8></a></p>
 
     </div>
 </div>
 
 {% else %}
 
+
 <div class="wrapper">
-            <h2 id="hello_msg"><b>Hello!</b></h2>
+            <h2 id="welcome_msg"><b>Hello!</b> Good to see you here.</h2>
+
     <div class="left">
          <img src="{% static 'images/image7.png' %}" alt="">
     </div>
     <div class="right">
         <p><a id="login" class="btn btn-light" href="accounts/login" role="button"><h8>Login</h8></a></p>
         <p><a id="signup" class="btn btn-light" href="accounts/register" role="button"><h8>Signup</h8></a></p>
-        <p><a id="courses" class="btn btn-light" href="course" role="button"><h8>View Courses</h8></a></p>
+        <p><a id="courses2" class="btn btn-light" href="course" role="button"><h8>View Courses</h8></a></p>
     </div>
 </div>
-
 {% endif %}
 
 

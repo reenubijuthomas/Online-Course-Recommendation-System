@@ -31,11 +31,11 @@
     <ul class="navbar-nav">
       {% if request.user.is_staff %}
       <li class="nav-item active">
-        <span><a id="main_tag" class="hello-msg" href="{% url 'home' %}">Learn With Us!</span>
+        <span><a id="main_tag" class="hello-msg" href="{% url 'home' %}">Learn With Us!</a></span>
       </li>
       {% else %}
        <li class="nav-item">
-        <span><a id="main_tag" class="hello-msg" href="{% url 'home' %}">Learn With Us!</span>
+        <span><a id="main_tag2" class="hello-msg" href="{% url 'home' %}">Learn With Us!</a></span>
       </li>
       {% endif %}
     </ul>
